@@ -1,0 +1,639 @@
+{
+  "info": {
+    "title": "API title",
+    "version": "v1"
+  },
+  "swagger": "2.0",
+  "produces": ["application/json; charset=UTF-8"],
+  "host": "pretest-qa.dcidev.id",
+  "tags": [
+    {
+      "name": "register",
+      "description": "Operations about registers"
+    },
+    {
+      "name": "profile",
+      "description": "Operations about profiles"
+    },
+    {
+      "name": "message",
+      "description": "Operations about messages"
+    },
+    {
+      "name": "oauth",
+      "description": "Operations about oauths"
+    },
+    {
+      "name": "uploads",
+      "description": "Operations about uploads"
+    },
+    {
+      "name": "notification",
+      "description": "Operations about notifications"
+    }
+  ],
+  "paths": {
+    "/api/v1/register/remove": {
+      "post": {
+        "description": "Remove Account",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "phone",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Remove Account"
+          }
+        },
+        "tags": ["register"],
+        "operationId": "postApiV1RegisterRemove"
+      }
+    },
+    "/api/v1/register/otp/request": {
+      "post": {
+        "description": "Resend Otp",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "phone",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Resend Otp"
+          }
+        },
+        "tags": ["register"],
+        "operationId": "postApiV1RegisterOtpRequest"
+      }
+    },
+    "/api/v1/register/otp/match": {
+      "post": {
+        "description": "Register matching otp code",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "user_id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "otp_code",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Register matching otp code"
+          }
+        },
+        "tags": ["register"],
+        "operationId": "postApiV1RegisterOtpMatch"
+      }
+    },
+    "/api/v1/register": {
+      "post": {
+        "description": "Register User By Phone",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "phone",
+            "description": "phone must with countri code 62xxx",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "country",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "latlong",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "device_token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "device_type",
+            "description": "{ios: 0, android: 1, web: 2}",
+            "type": "integer",
+            "format": "int32",
+            "enum": [0, 1, 2],
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Register User By Phone"
+          }
+        },
+        "tags": ["register"],
+        "operationId": "postApiV1Register"
+      }
+    },
+    "/api/v1/profile/career": {
+      "post": {
+        "description": "Update career user",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Access Token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "position",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "company_name",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "starting_from",
+            "type": "string",
+            "format": "date",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "ending_in",
+            "type": "string",
+            "format": "date",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Update career user"
+          }
+        },
+        "tags": ["profile"],
+        "operationId": "postApiV1ProfileCareer"
+      }
+    },
+    "/api/v1/profile/education": {
+      "post": {
+        "description": "Update Education user",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Access Token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "school_name",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "graduation_time",
+            "type": "string",
+            "format": "date",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Update Education user"
+          }
+        },
+        "tags": ["profile"],
+        "operationId": "postApiV1ProfileEducation"
+      }
+    },
+    "/api/v1/profile": {
+      "post": {
+        "description": "Update Profile user",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Access Token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "name",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "gender",
+            "description": "{male: 0, female: 1}",
+            "type": "integer",
+            "format": "int32",
+            "enum": [0, 1],
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "birthday",
+            "type": "string",
+            "format": "date",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "hometown",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "bio",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Update Profile user"
+          }
+        },
+        "tags": ["profile"],
+        "operationId": "postApiV1Profile"
+      }
+    },
+    "/api/v1/profile/me": {
+      "get": {
+        "description": "Get Current User",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Access Token",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Current User"
+          }
+        },
+        "tags": ["profile"],
+        "operationId": "getApiV1ProfileMe"
+      }
+    },
+    "/api/v1/message/{user_id}": {
+      "get": {
+        "description": "Get message",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Access Token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "user_id",
+            "type": "integer",
+            "format": "int32",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get message"
+          }
+        },
+        "tags": ["message"],
+        "operationId": "getApiV1MessageUserId"
+      }
+    },
+    "/api/v1/message/send": {
+      "post": {
+        "description": "Send message",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Access Token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "user_id",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "message",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Send message"
+          }
+        },
+        "tags": ["message"],
+        "operationId": "postApiV1MessageSend"
+      }
+    },
+    "/api/v1/oauth/credentials": {
+      "get": {
+        "description": "Get Credentials",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "query",
+            "name": "access_token",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "description": "Get Credentials"
+          }
+        },
+        "tags": ["oauth"],
+        "operationId": "getApiV1OauthCredentials"
+      }
+    },
+    "/api/v1/oauth/sign_in": {
+      "post": {
+        "description": "Login user",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "phone",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "password",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "latlong",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "device_token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "device_type",
+            "description": "{ios: 0, android: 1, web: 2}",
+            "type": "integer",
+            "format": "int32",
+            "enum": [0, 1, 2],
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Login user"
+          }
+        },
+        "tags": ["oauth"],
+        "operationId": "postApiV1OauthSignIn"
+      }
+    },
+    "/api/v1/oauth/revoke": {
+      "post": {
+        "description": "Logging out user and revoke token.",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "formData",
+            "name": "access_token",
+            "description": "Your token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "confirm",
+            "description": "Confirm",
+            "type": "integer",
+            "format": "int32",
+            "default": 1,
+            "enum": [1],
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Logging out user and revoke token."
+          }
+        },
+        "tags": ["oauth"],
+        "operationId": "postApiV1OauthRevoke"
+      }
+    },
+    "/api/v1/uploads/cover": {
+      "post": {
+        "description": "Set Cover picture",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Access Token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Set Cover picture"
+          }
+        },
+        "tags": ["uploads"],
+        "operationId": "postApiV1UploadsCover"
+      }
+    },
+    "/api/v1/uploads/profile/default": {
+      "post": {
+        "description": "Set Default picture",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Access Token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Set Default picture"
+          }
+        },
+        "tags": ["uploads"],
+        "operationId": "postApiV1UploadsProfileDefault"
+      }
+    },
+    "/api/v1/uploads/profile": {
+      "delete": {
+        "description": "Delete profile picture",
+        "produces": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Access Token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "query",
+            "name": "id",
+            "type": "string",
+            "required": true
+          }
+        ],
+        "responses": {
+          "204": {
+            "description": "Delete profile picture"
+          }
+        },
+        "tags": ["uploads"],
+        "operationId": "deleteApiV1UploadsProfile"
+      },
+      "post": {
+        "description": "Upload Profile Picture",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "header",
+            "name": "Authorization",
+            "description": "Access Token",
+            "type": "string",
+            "required": true
+          },
+          {
+            "in": "formData",
+            "name": "image",
+            "type": "file",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "Upload Profile Picture"
+          }
+        },
+        "tags": ["uploads"],
+        "operationId": "postApiV1UploadsProfile"
+      }
+    },
+    "/api/v1/notification/{grub_id}/{token}": {
+      "post": {
+        "description": "cek app version",
+        "produces": ["application/json"],
+        "consumes": ["application/json"],
+        "parameters": [
+          {
+            "in": "path",
+            "name": "grub_id",
+            "type": "integer",
+            "format": "int32",
+            "required": true
+          },
+          {
+            "in": "path",
+            "name": "token",
+            "type": "integer",
+            "format": "int32",
+            "required": true
+          }
+        ],
+        "responses": {
+          "201": {
+            "description": "cek app version"
+          }
+        },
+        "tags": ["notification"],
+        "operationId": "postApiV1NotificationGrubIdToken"
+      }
+    }
+  }
+}
